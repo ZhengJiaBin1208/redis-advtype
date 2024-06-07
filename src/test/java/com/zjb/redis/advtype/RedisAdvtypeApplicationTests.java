@@ -1,4 +1,4 @@
-package com.zjb.redisk.advtype.redisadvtype;
+package com.zjb.redis.advtype;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
