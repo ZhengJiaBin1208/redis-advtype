@@ -15,7 +15,7 @@ import org.redisson.config.Config;
 public class RedissoBF {
     public static void main(String[] args) {
         Config config = new Config();
-        config.useSingleServer().setAddress("redis://10.150.35.6:6379");
+        config.useSingleServer().setAddress("redis://127.0.0.1:6379");
 
         RedissonClient redisson = Redisson.create(config);
 
@@ -23,7 +23,7 @@ public class RedissoBF {
 
             bloomFilter.tryInit(20000L,0.03);
 
-        for (int i = 0; i<=10086; i++){
+        for (int i = 1; i<=10086; i++){
             bloomFilter.add(String.valueOf(i));
         }
 
@@ -32,7 +32,13 @@ public class RedissoBF {
         System.out.println("10088:BF--" + bloomFilter.contains("10088"));
         System.out.println("10096:BF--" + bloomFilter.contains("10096"));
         System.out.println("10340:BF--" + bloomFilter.contains("10340"));
+        System.out.println("18567:BF--" + bloomFilter.contains("18567"));
 
+        for (int i = 10086; i<=20000; i++){
+            if (bloomFilter.contains(String.valueOf(i))) {
+                System.out.println(i);
+            }
+        }
 
     }
 }
